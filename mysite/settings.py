@@ -47,7 +47,7 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
    'http://127.0.0.1:3000', 
    'http://localhost:3000',
-   'port-0-paystudy-django-rt92alkmbg4m8.sel4.cloudtype.app',
+   'https://port-0-paystudy-django-rt92alkmbg4m8.sel4.cloudtype.app',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
