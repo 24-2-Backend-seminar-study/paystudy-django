@@ -39,20 +39,22 @@ CID = env('CID')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'port-0-paystudy-django-lxlodv5z82196b68.sel5.cloudtype.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'port-0-paystudy-django-lxlodv5z82196b68.sel5.cloudtype.app', 'kakaopay-prac.vercel.app']
 
-SESSION_COOKIE_DOMAIN='.cloudtype.app'
+SESSION_COOKIE_DOMAIN='.app'
 
 CSRF_TRUSTED_ORIGINS = [
    'http://127.0.0.1:3000', 
    'http://localhost:3000',
    'https://port-0-paystudy-django-lxlodv5z82196b68.sel5.cloudtype.app',
+   'https://kakaopay-prac.vercel.app',
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    'https://port-0-paystudy-django-lxlodv5z82196b68.sel5.cloudtype.app'
+    'https://port-0-paystudy-django-lxlodv5z82196b68.sel5.cloudtype.app',
+    'https://kakaopay-prac.vercel.app',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
