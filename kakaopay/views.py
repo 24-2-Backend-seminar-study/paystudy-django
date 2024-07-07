@@ -69,7 +69,7 @@ class PayApproveView(APIView):
 
         if response.status_code == 200:
             pay_hist.pay_status = 'approved'
-            user.point -= int(pay_hist.point.split(' ')[0])
+            user.point += int(pay_hist.point.split(' ')[0])
             pay_hist.save()
 
         return Response(response.json(), status=response.status_code)
