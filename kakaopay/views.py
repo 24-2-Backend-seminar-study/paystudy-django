@@ -25,9 +25,9 @@ class PayReadyView(APIView):
     def post(self, request):
         pay_data = request.data
 
-        user = request.user
-        if not user.is_authenticated:
-            return Response({"detail": "please signin."}, status=status.HTTP_401_UNAUTHORIZED)
+        # user = request.user
+        # if not user.is_authenticated:
+        #     return Response({"detail": "please signin."}, status=status.HTTP_401_UNAUTHORIZED)
         
         pay_data['cid'] = cid
         pay_data = json.dumps(pay_data)
@@ -41,7 +41,7 @@ class PayReadyView(APIView):
                 partner_order_id=request.data['partner_order_id'],
                 partner_user_id=request.data['partner_user_id'],
                 point=int(request.data['item_name'].split(' ')[0]),
-                user=user
+                # user=user
             )
 
         return Response(response.json(), status=response.status_code)
