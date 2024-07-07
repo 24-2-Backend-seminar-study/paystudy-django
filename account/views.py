@@ -13,13 +13,10 @@ from .models import UserProfile
 
 def set_token_on_response_cookie(user, status_code) -> Response:
     token = RefreshToken.for_user(user)
-    user_profile = UserProfile.objects.get(user=user)
-    serialized_data = UserProfileSerializer(user_profile).data
-
-    serialized_data['refresh_token'] = str(token)
-    serialized_data['access_token'] = str(token.access_token)
-    
-    res = Response(serialized_data, status=status_code)
+    user = UserSerializer(user).data
+    res = Response(user, status=status_code)
+    res.set_cookie("refresh_token", value=str(token))
+    res.set_cookie("access_token", value=str(token.access_token))
     return res
 
 class SignUpView(APIView):
