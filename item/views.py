@@ -29,7 +29,7 @@ class ItemList(APIView):
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-class ItemDetailView(APIView):
+class ItemBuyView(APIView):
 
     def post(self, request):
         user_id=request.data.get('userId')
@@ -49,5 +49,3 @@ class ItemDetailView(APIView):
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-        
-    
