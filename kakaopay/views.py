@@ -26,9 +26,9 @@ class PayReadyView(APIView):
     def post(self, request):
         pay_data = request.data
 
-        # user = request.user
-        # if not user.is_authenticated:
-        #     return Response({"detail": "please signin."}, status=status.HTTP_401_UNAUTHORIZED)
+        user = request.user
+        if not user.is_authenticated:
+            return Response({"detail": "please signin."}, status=status.HTTP_401_UNAUTHORIZED)
         
         pay_data['cid'] = cid
         pay_data = json.dumps(pay_data)
@@ -42,14 +42,18 @@ class PayReadyView(APIView):
                 partner_order_id=request.data['partner_order_id'],
                 partner_user_id=request.data['partner_user_id'],
                 point=request.data['item_name'],
-                price=request.data['total_amount']
-                # user=user
+                price=request.data['total_amount'],
+                user=user
             )
 
         return Response(response.json(), status=response.status_code)
 
 class PayApproveView(APIView):
     def post(self, request):
+        user = request.user
+        if not user.is_authenticated:
+            return Response({"detail": "please signin."}, status=status.HTTP_401_UNAUTHORIZED)
+
         pg_token = request.data['pg_token']
         tid = request.data['tid']
         pay_hist = KakaoPay.objects.get(tid=tid)
@@ -65,9 +69,11 @@ class PayApproveView(APIView):
 
         if response.status_code == 200:
             pay_hist.pay_status = 'approved'
+            user.point -= int(pay_hist.point.split(' ')[0])
             pay_hist.save()
 
         return Response(response.json(), status=response.status_code)
+    
     
     
 
