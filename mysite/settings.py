@@ -41,7 +41,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'port-0-paystudy-django-lxlodv5z82196b68.sel5.cloudtype.app', 'kakaopay-prac.vercel.app']
 
-SESSION_COOKIE_DOMAIN='.app'
+SESSION_COOKIE_DOMAIN='cloudtype.app'
 
 CSRF_TRUSTED_ORIGINS = [
    'http://127.0.0.1:3000', 
