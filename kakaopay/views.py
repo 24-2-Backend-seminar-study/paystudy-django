@@ -15,6 +15,7 @@ pay_key = settings.KAKAO_PAY_KEY
 cid = settings.CID
 
 payready_url = 'https://open-api.kakaopay.com/online/v1/payment/ready'
+payapprove_url = 'https://open-api.kakaopay.com/online/v1/payment/approve'
 
 pay_header = {
     'Content-Type': 'application/json',
@@ -46,6 +47,29 @@ class PayReadyView(APIView):
             )
 
         return Response(response.json(), status=response.status_code)
+
+class PayApproveView(APIView):
+    def post(self, request):
+        pg_token = request.data['pg_token']
+        tid = request.data['tid']
+        pay_hist = KakaoPay.objects.get(tid=tid)
+        pay_data = {
+            'cid': cid,
+            'tid': tid,
+            'partner_order_id': pay_hist.partner_order_id,
+            'partner_user_id': pay_hist.partner_user_id,
+            'pg_token': pg_token
+        }
+        pay_data = json.dumps(pay_data)
+        response = requests.post(payapprove_url, headers=pay_header, data=pay_data)
+
+        if response.status_code == 200:
+            pay_hist.pay_status = 'approved'
+            pay_hist.save()
+
+        return Response(response.json(), status=response.status_code)
+    
+    
 
 
 
