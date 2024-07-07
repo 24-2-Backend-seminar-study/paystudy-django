@@ -22,4 +22,5 @@ urlpatterns = [
     path('item/', include('item.urls')),
     path('point/', include('point.urls')),
     path('account/', include('account.urls')),
+    path("api/kakaopay/", include("kakaopay.urls")),
 ]
