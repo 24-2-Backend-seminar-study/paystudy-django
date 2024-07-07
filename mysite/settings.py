@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     'item',
     'account',
     'point',
+    'kakaopay',
 ]
 
 MIDDLEWARE = [
