@@ -40,7 +40,8 @@ class PayReadyView(APIView):
                 tid=response_data['tid'],
                 partner_order_id=request.data['partner_order_id'],
                 partner_user_id=request.data['partner_user_id'],
-                point=int(request.data['item_name'].split(' ')[0]),
+                point=request.data['item_name'],
+                price=request.data['total_amount']
                 # user=user
             )
 
