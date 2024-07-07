@@ -8,4 +8,5 @@ class KakaoPay(models.Model):
     partner_user_id=models.CharField(max_length=100)
     point=models.CharField(max_length=100)
     price=models.IntegerField(default=0)
+    pay_status=models.CharField(max_length=100, default='ready')
     #user=models.ForeignKey(User, on_delete=models.CASCADE, related_name='pay_buyer', null=True)
